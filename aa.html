@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async Await</title>
+</head>
+<body>
+    <h1>async await</h1>
+    <p>lets code it.i will be written about this in my notes as well as in the js file using comments</p>
+</body>
+<script>
+    console.log('person1:shows the ticket');
+    console.log('person2:shows the ticket');
+    // lets say the person3 is me and i dont have the ticket.so i will make the promise to the guy 
+    const promiseWifeBringingTicket = new Promise((resolve,reject)=>{
+    //  so for now wife is bringing the ticket so we will wait for fec sec.
+        setTimeout(() => {
+        resolve('ticket');
+        }, 3000);
+    });
+    const BringPOPcorn =   promiseWifeBringingTicket.then((t)=>{
+    //    console.log('person3:shows the ticket')
+    console.log('wife:i got the tickets')
+    console.log('husband:we should go in');
+    console.log('wife:no am hungry! get me some food');
+
+         return new Promise((resolve,reject)=>
+            resolve('get popcorn'));
+    });
+
+// now wife says i need some butter on popcorn
+    const AddButter = BringPOPcorn.then((t)=>{
+     console.log('i got u popcorn');
+     console.log('husband:we should go in');
+     console.log('wife:no i need some butter on my popcorn');
+
+     return new Promise((resolve,reject)=>
+             resolve('got butter on popcorn'));
+    });
+
+    const Coldrinks = AddButter.then((t)=>{
+        console.log('yeh i got butter on my popcorn');
+        console.log('husband:we should go in');
+        console.log('wife:no i need coldrinks');
+
+        return new Promise((resolve,reject)=>
+              resolve('god coldrinks'));
+
+    });
+
+    Coldrinks.then((t)=>{
+         console.log('i really like this new drink')
+    });
+    // after i saw my ticket there are few more people;
+    console.log('person4:shows the ticket');
+    console.log('person5:shows the ticket');
+    // so this is how it doesnot wait for anything if it is async
+
+
+
+    // so now lets mate this little complicated .when she brings the ticket you cannot go directly to the hall .because she is hungry.now you have to go to get some food.so you make her a new promise that u are going to get her some  popcorn.
+</script>
+</html>
