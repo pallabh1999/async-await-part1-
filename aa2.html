@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>async await part2</title>
+</head>
+<body>
+    <h1>async await part 2</h1>
+    <p>so if we put the sentences in between which are not getting printed automatically it looks very ugly.so to correct that we can take the help of async await</p>
+</body>
+<script>
+    console.log('person1:shows the ticket');
+    console.log('person2:shows the ticket');
+// so everything we did on our previous file like getting the popcorn ,butter and coldrinks am going to put that on a separate file.
+// because we know that those things needs to happen one by one.
+// in any function you put an async in front of it.it becomes an aync function.
+// lets put some message inside the function.unlike normal function async function always returns the value.
+const preMovie = async() => {
+// it returns the premovie
+// we are using then because we already know that async function return promises and .then is used in promises.
+// so we got what we want.but within this async function we dont want anything to wait.so we will move things inside the async function one by one.and make it nice and clean.
+const promiseWifeBringingTicket = new Promise((resolve,reject)=>{
+    // 
+        setTimeout(() =>  resolve('ticket'), 3000);
+        // so the way it workds is you will use this prms and have await in front of it.
+    });
+    // let ticket = await promiseWifeBringingTicket;
+    // YOU CAN ONLY USE AWAIT INSIDE A ASYNC FUNCTION ONLY.
+
+    const BringPOPcorn =  new Promise((resolve,reject)=>  resolve(' popcorn'));
+    const AddButter =  new Promise((resolve,reject)=>  resolve('butter'));
+    const GETcoldrinks =  new Promise((resolve,reject)=>  resolve('coldrinks'));
+        let ticket = await promiseWifeBringingTicket;
+
+    
+    console.log('wife:i got the tickets')
+    console.log('husband:we should go in');
+    console.log('wife:no am hungry! get me some food');
+
+        let popcorn = await BringPOPcorn;
+
+     console.log('i got u popcorn');
+     console.log('husband:we should go in');
+     console.log('wife:no i need some butter on my popcorn');
+
+      let butter = await AddButter;
+
+    console.log('yeh i got butter on my popcorn');
+    console.log('husband:we should go in');
+    console.log('wife:no i need coldrinks');
+
+     let coldrinks = await GETcoldrinks;
+     console.log('wife:yeh i like this new drink');
+     console.log('husband:anything else darling?');
+     console.log('wife:oh babes!! we are getting late lets go in');
+     console.log('thanks for the information');
+
+    return ticket;
+}
+preMovie().then((msg)=>console.log('person3 shows the ticket'));
+
+    console.log('person4:shows the ticket');
+    console.log('person5:shows the ticket');
+</script>
+</html>
